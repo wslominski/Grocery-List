@@ -61,28 +61,42 @@
   display: flex;
   position: relative;
   flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
   padding: 8px;
 }
+.freeBox__jKlSf > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-end;
+  min-width: 0;
+  margin-left: calc(0px - 8px);
+  width: calc(100% + 8px);
+}
+.freeBox__jKlSf > :global(.__wab_flex-container) > *,
+.freeBox__jKlSf > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__jKlSf > :global(.__wab_flex-container) > picture > img,
+.freeBox__jKlSf
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 8px;
+}
 .text {
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   text-align: right;
-  min-width: 0;
 }
 .freeBox__dF7Y {
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   display: flex;
   flex-direction: row;
-  min-width: 0;
 }

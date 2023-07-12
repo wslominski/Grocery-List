@@ -170,7 +170,11 @@ function PlasmicDishCard__RenderFunc(props: {
             value: args.slot
           })}
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__jKlSf)}>
+        <p.Stack
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__jKlSf)}
+        >
           <div
             data-plasmic-name={"text"}
             data-plasmic-override={overrides.text}
@@ -188,7 +192,7 @@ function PlasmicDishCard__RenderFunc(props: {
               value: args.slot2
             })}
           </div>
-        </div>
+        </p.Stack>
       </div>
     </div>
   ) as React.ReactElement | null;

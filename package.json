@@ -5,11 +5,12 @@
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
     "@ant-design/pro-components": "^2.6.4",
-    "@plasmicapp/cli": "^0.1.299",
+    "@plasmicapp/cli": "^0.1.300",
     "@plasmicapp/react-web": "^0.2.238",
     "@plasmicpkgs/antd5": "^0.0.89",
     "@plasmicpkgs/plasmic-basic-components": "^0.0.164",
     "@plasmicpkgs/plasmic-rich-components": "^1.0.101",
+    "@plasmicpkgs/react-scroll-parallax": "^0.0.158",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

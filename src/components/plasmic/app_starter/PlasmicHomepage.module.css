@@ -26,6 +26,31 @@
 }
 .pageLayout:global(.__wab_instance):global(.__wab_instance) {
   position: relative;
+  height: 978px;
+}
+.form:global(.__wab_instance) {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 334px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  object-fit: cover;
+  min-width: 0;
+  padding: 8px;
+}
+.button__n1Bp:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.text__fEdGk {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .section {
   display: grid;
@@ -33,7 +58,8 @@
   justify-items: center;
   width: 100%;
   grid-row-gap: 16px;
-  height: 665px;
+  height: 575px;
+  margin-bottom: 0px;
   grid-column-start: 1;
   grid-column-end: -1;
   grid-template-columns:
@@ -48,14 +74,14 @@
 :where(.section > *) {
   grid-column: 4;
 }
-.freeBox {
+.freeBox__dvOz {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
   width: 100%;
-  height: 670px;
+  height: 591px;
   max-width: 100%;
   flex-wrap: wrap;
   justify-self: center;
@@ -65,7 +91,120 @@
 }
 .dishCard:global(.__wab_instance) {
   position: relative;
+  height: 159px;
   min-width: 400px;
   max-width: 600px;
   margin: 14px;
+}
+.freeBox__e86Uv {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__e86Uv > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  min-width: 0;
+  margin-left: calc(0px - 8px);
+  width: calc(100% + 8px);
+}
+.freeBox__e86Uv > :global(.__wab_flex-container) > *,
+.freeBox__e86Uv > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__e86Uv > :global(.__wab_flex-container) > picture > img,
+.freeBox__e86Uv
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 8px;
+}
+.freeBox___7Jj3Z {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox___7Jj3Z > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 0;
+  margin-left: calc(0px - 8px);
+  width: calc(100% + 8px);
+}
+.freeBox___7Jj3Z > :global(.__wab_flex-container) > *,
+.freeBox___7Jj3Z > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___7Jj3Z > :global(.__wab_flex-container) > picture > img,
+.freeBox___7Jj3Z
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 8px;
+}
+.dishImage {
+  position: relative;
+  object-fit: contain;
+  max-width: 100%;
+  width: 48px;
+  flex-shrink: 0;
+}
+.dishImage > picture > img {
+  object-fit: contain;
+}
+.dishImage > :global(.__wab_img-spacer) > img {
+  object-fit: contain;
+}
+.freeBox__igWvm {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  padding: 8px;
+}
+.freeBox__igWvm > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-end;
+  margin-left: calc(0px - 4px);
+  width: calc(100% + 4px);
+}
+.freeBox__igWvm > :global(.__wab_flex-container) > *,
+.freeBox__igWvm > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__igWvm > :global(.__wab_flex-container) > picture > img,
+.freeBox__igWvm
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 4px;
+}
+.button__fIma3:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  position: relative;
+  background: #f93535;
+  color: #ffffff;
+}
+.text__yDhOg {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.ingredients {
+  padding: 8px;
 }

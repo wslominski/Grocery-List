@@ -16,6 +16,7 @@ import * as React from "react";
 import * as p from "@plasmicapp/react-web";
 import * as ph from "@plasmicapp/react-web/lib/host";
 
+import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
 import {
   usePlasmicDataConfig,
   executePlasmicDataOp,
@@ -39,6 +40,8 @@ import {
   ensureGlobalVariants
 } from "@plasmicapp/react-web";
 import PageLayout from "../../PageLayout"; // plasmic-import: 8NUtQpwWWvU4/component
+import { FormWrapper } from "@plasmicpkgs/antd5/skinny/registerForm"; // plasmic-import: TgJFzUZpvQ/codeComponent
+import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton"; // plasmic-import: bx9Xzvf5_eu/codeComponent
 import DishCard from "../../DishCard"; // plasmic-import: NLVDV5id1b/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources"; // plasmic-import: H-iyuo837ixt/codeComponent
 
@@ -63,10 +66,11 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 export type PlasmicHomepage__OverridesType = {
   root?: p.Flex<"div">;
   pageLayout?: p.Flex<typeof PageLayout>;
+  form?: p.Flex<typeof FormWrapper>;
   section?: p.Flex<"section">;
-  freeBox?: p.Flex<"div">;
   dishCard?: p.Flex<typeof DishCard>;
   dishName?: p.Flex<"div">;
+  dishImage?: p.Flex<typeof p.PlasmicImg>;
   ingredients?: p.Flex<"div">;
   cost?: p.Flex<"div">;
 };
@@ -105,30 +109,36 @@ function PlasmicHomepage__RenderFunc(props: {
 
   const [$queries, setDollarQueries] = React.useState({});
 
+  const stateSpecs = React.useMemo(
+    () => [
+      {
+        path: "form.value",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = p.useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries,
+    $refs
+  });
+  const dataSourcesCtx = usePlasmicDataSourceContext();
+  const { cache, mutate: swrMutate } = usePlasmicDataConfig();
+  const mutate = swrMutate;
+
   const new$Queries = {
-    query: usePlasmicDataOp(
+    query2: usePlasmicDataOp(
       (() => {
         try {
           return {
             sourceId: "v25iWL5PSvNGtkiuqRVPPB",
             opId: "24bce457-8ac1-4538-b938-f29b2dd0ae3b",
             userArgs: {},
-            cacheKey:
-              "plasmic.$." +
-              (() => {
-                try {
-                  return undefined;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "";
-                  }
-                  throw e;
-                }
-              })() +
-              ".$.3qOtU2tZp.$.",
+            cacheKey: "plasmic.$.AU-Q-JnHp.$.",
             invalidatedKeys: null,
             roleId: null
           };
@@ -145,14 +155,14 @@ function PlasmicHomepage__RenderFunc(props: {
       })()
     ),
 
-    query2: usePlasmicDataOp(
+    query3: usePlasmicDataOp(
       (() => {
         try {
           return {
             sourceId: "v25iWL5PSvNGtkiuqRVPPB",
             opId: "24bce457-8ac1-4538-b938-f29b2dd0ae3b",
             userArgs: {},
-            cacheKey: "plasmic.$.AU-Q-JnHp.$.",
+            cacheKey: "plasmic.$.OJgdJmvij.$.",
             invalidatedKeys: null,
             roleId: null
           };
@@ -199,122 +209,603 @@ function PlasmicHomepage__RenderFunc(props: {
           >
             <ph.DataCtxReader>
               {$ctx => (
-                <section
-                  data-plasmic-name={"section"}
-                  data-plasmic-override={overrides.section}
-                  className={classNames(projectcss.all, sty.section)}
-                >
-                  <div
-                    data-plasmic-name={"freeBox"}
-                    data-plasmic-override={overrides.freeBox}
-                    className={classNames(projectcss.all, sty.freeBox)}
-                  >
-                    {(
-                      (() => {
-                        try {
-                          return $queries.query2.data;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return [];
-                          }
-                          throw e;
+                <React.Fragment>
+                  <FormWrapper
+                    data-plasmic-name={"form"}
+                    data-plasmic-override={overrides.form}
+                    className={classNames("__wab_instance", sty.form)}
+                    extendedOnValuesChange={p.generateStateOnChangeProp(
+                      $state,
+                      ["form", "value"]
+                    )}
+                    formItems={(() => {
+                      const __composite = [
+                        {
+                          label: null,
+                          name: null,
+                          inputType: "Text",
+                          rules: null,
+                          initialValue: null
+                        },
+                        {
+                          label: null,
+                          name: null,
+                          inputType: "Text Area",
+                          rules: null
+                        },
+                        {
+                          inputType: null,
+                          label: null,
+                          name: null,
+                          rules: null
                         }
-                      })() ?? []
-                    ).map((currentItem, currentIndex) => (
-                      <DishCard
-                        data-plasmic-name={"dishCard"}
-                        data-plasmic-override={overrides.dishCard}
-                        className={classNames("__wab_instance", sty.dishCard)}
-                        key={currentIndex}
-                        slot={
-                          <div
-                            data-plasmic-name={"ingredients"}
-                            data-plasmic-override={overrides.ingredients}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.ingredients
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return currentItem.ingredients;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
+                      ];
+                      __composite["0"]["label"] = "Dish Name";
+                      __composite["0"]["name"] = "dish_name";
+                      __composite["0"]["rules"] = [
+                        {
+                          ruleType: "required",
+                          message: "Dish Name is required"
+                        }
+                      ];
+
+                      __composite["0"]["initialValue"] = undefined;
+                      __composite["1"]["label"] = "Ingredients";
+                      __composite["1"]["name"] = "ingredients";
+                      __composite["1"]["rules"] = [
+                        {
+                          ruleType: "required",
+                          message: "At least one ingredient must be listed"
+                        }
+                      ];
+
+                      __composite["2"]["inputType"] = "Number";
+                      __composite["2"]["label"] = "Cost";
+                      __composite["2"]["name"] = "cost";
+                      __composite["2"]["rules"] = [
+                        { ruleType: "required", message: "Cost is required" }
+                      ];
+
+                      return __composite;
+                    })()}
+                    initialValues={(() => {
+                      try {
+                        return undefined;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    labelCol={{ span: 8, horizontalOnly: true }}
+                    layout={"vertical" as const}
+                    mode={"simplified" as const}
+                    onFinish={async values => {
+                      const $steps = {};
+                      $steps["airtableCreate"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: __wrapUserFunction(
+                                {
+                                  type: "InteractionArgLoc",
+                                  actionName: "dataSourceOp",
+                                  interactionUuid: "a38UC_MpY",
+                                  componentUuid: "DR_nCvMIJQo",
+                                  argName: "dataOp"
+                                },
+                                () => ({
+                                  sourceId: "v25iWL5PSvNGtkiuqRVPPB",
+                                  opId: "5f5d07ea-6565-4718-ab4b-fd394700160b",
+                                  userArgs: {
+                                    variables: [
+                                      $state.form.value.ingredients,
+                                      $state.form.value.cost,
+                                      $state.form.value.dish_name
+                                    ]
+                                  },
+                                  cacheKey: null,
+                                  invalidatedKeys: ["plasmic_refresh_all"],
+                                  roleId: null
+                                })
+                              )
+                            };
+                            return __wrapUserFunction(
+                              {
+                                type: "InteractionLoc",
+                                actionName: "dataSourceOp",
+                                interactionUuid: "a38UC_MpY",
+                                componentUuid: "DR_nCvMIJQo"
+                              },
+                              () =>
+                                (async ({ dataOp, continueOnError }) => {
+                                  try {
+                                    const response = await executePlasmicDataOp(
+                                      dataOp,
+                                      {
+                                        userAuthToken:
+                                          dataSourcesCtx?.userAuthToken,
+                                        user: dataSourcesCtx?.user
+                                      }
+                                    );
+                                    if (
+                                      dataOp.invalidatedKeys &&
+                                      dataOp.invalidatedKeys.find(
+                                        key => key === "plasmic_refresh_all"
+                                      )
+                                    ) {
+                                      await Promise.all(
+                                        Array.from(cache.keys()).map(
+                                          async key => mutate(key)
+                                        )
+                                      );
+
+                                      return response;
+                                    }
+                                    if (dataOp.invalidatedKeys) {
+                                      await Promise.all(
+                                        dataOp.invalidatedKeys.map(
+                                          async invalidateKey =>
+                                            Promise.all(
+                                              Array.from(cache.keys()).map(
+                                                async key => {
+                                                  if (
+                                                    typeof key === "string" &&
+                                                    key.includes(
+                                                      `.$.${invalidateKey}.$.`
+                                                    )
+                                                  ) {
+                                                    return mutate(key);
+                                                  }
+                                                  return Promise.resolve();
+                                                }
+                                              )
+                                            )
+                                        )
+                                      );
+                                    }
+                                    return response;
+                                  } catch (e) {
+                                    if (!continueOnError) {
+                                      throw e;
+                                    }
+                                    return e;
                                   }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        }
-                        slot2={
-                          <div
-                            data-plasmic-name={"cost"}
-                            data-plasmic-override={overrides.cost}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.cost
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return currentItem.cost;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                        }
+                                })?.apply(null, [actionArgs]),
+                              actionArgs
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        typeof $steps["airtableCreate"] === "object" &&
+                        typeof $steps["airtableCreate"].then === "function"
+                      ) {
+                        $steps["airtableCreate"] = await __wrapUserPromise(
+                          {
+                            type: "InteractionLoc",
+                            actionName: "dataSourceOp",
+                            interactionUuid: "a38UC_MpY",
+                            componentUuid: "DR_nCvMIJQo"
+                          },
+                          $steps["airtableCreate"]
+                        );
+                      }
+                    }}
+                    submitSlot={
+                      <AntdButton
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__n1Bp
+                        )}
+                        submitsForm={true}
+                        type={"primary" as const}
                       >
                         <div
-                          data-plasmic-name={"dishName"}
-                          data-plasmic-override={overrides.dishName}
                           className={classNames(
                             projectcss.all,
                             projectcss.__wab_text,
-                            sty.dishName
+                            sty.text__fEdGk
                           )}
                         >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return currentItem.dish_name;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
+                          {"Submit"}
                         </div>
-                      </DishCard>
-                    ))}
-                  </div>
-                </section>
+                      </AntdButton>
+                    }
+                    wrapperCol={{ span: 16, horizontalOnly: true }}
+                  />
+
+                  <section
+                    data-plasmic-name={"section"}
+                    data-plasmic-override={overrides.section}
+                    className={classNames(projectcss.all, sty.section)}
+                  >
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__dvOz)}
+                    >
+                      {(
+                        (() => {
+                          try {
+                            return $queries.query3.data;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })() ?? []
+                      ).map((currentItem, currentIndex) => (
+                        <DishCard
+                          data-plasmic-name={"dishCard"}
+                          data-plasmic-override={overrides.dishCard}
+                          className={classNames("__wab_instance", sty.dishCard)}
+                          key={currentIndex}
+                          slot={
+                            <div
+                              data-plasmic-name={"ingredients"}
+                              data-plasmic-override={overrides.ingredients}
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.ingredients
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return currentItem.ingredients;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          }
+                          slot2={
+                            <div
+                              data-plasmic-name={"cost"}
+                              data-plasmic-override={overrides.cost}
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.cost
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return currentItem.cost;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          }
+                        >
+                          <p.Stack
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__e86Uv
+                            )}
+                          >
+                            <p.Stack
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox___7Jj3Z
+                              )}
+                            >
+                              <div
+                                data-plasmic-name={"dishName"}
+                                data-plasmic-override={overrides.dishName}
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.dishName
+                                )}
+                                onClick={async event => {
+                                  const $steps = {};
+                                  $steps["updateFormValue"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          variable: __wrapUserFunction(
+                                            {
+                                              type: "InteractionArgLoc",
+                                              actionName: "updateVariable",
+                                              interactionUuid: "BexOkYkeA",
+                                              componentUuid: "DR_nCvMIJQo",
+                                              argName: "variable"
+                                            },
+                                            () => ({
+                                              objRoot: $state,
+                                              variablePath: ["form", "value"]
+                                            })
+                                          ),
+                                          operation: __wrapUserFunction(
+                                            {
+                                              type: "InteractionArgLoc",
+                                              actionName: "updateVariable",
+                                              interactionUuid: "BexOkYkeA",
+                                              componentUuid: "DR_nCvMIJQo",
+                                              argName: "operation"
+                                            },
+                                            () => 0
+                                          )
+                                        };
+                                        return __wrapUserFunction(
+                                          {
+                                            type: "InteractionLoc",
+                                            actionName: "updateVariable",
+                                            interactionUuid: "BexOkYkeA",
+                                            componentUuid: "DR_nCvMIJQo"
+                                          },
+                                          () =>
+                                            (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              p.set(
+                                                objRoot,
+                                                variablePath,
+                                                value
+                                              );
+                                              return value;
+                                            })?.apply(null, [actionArgs]),
+                                          actionArgs
+                                        );
+                                      })()
+                                    : undefined;
+                                  if (
+                                    typeof $steps["updateFormValue"] ===
+                                      "object" &&
+                                    typeof $steps["updateFormValue"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["updateFormValue"] =
+                                      await __wrapUserPromise(
+                                        {
+                                          type: "InteractionLoc",
+                                          actionName: "updateVariable",
+                                          interactionUuid: "BexOkYkeA",
+                                          componentUuid: "DR_nCvMIJQo"
+                                        },
+                                        $steps["updateFormValue"]
+                                      );
+                                  }
+                                }}
+                              >
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return currentItem.dish_name;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
+                              </div>
+                              <p.PlasmicImg
+                                data-plasmic-name={"dishImage"}
+                                data-plasmic-override={overrides.dishImage}
+                                alt={""}
+                                className={classNames(sty.dishImage)}
+                                displayHeight={"auto" as const}
+                                displayMaxHeight={"none" as const}
+                                displayMaxWidth={"100%" as const}
+                                displayMinHeight={"0" as const}
+                                displayMinWidth={"0" as const}
+                                displayWidth={"48px" as const}
+                                loading={"lazy" as const}
+                                src={(() => {
+                                  try {
+                                    return currentItem.image[0].thumbnails.small
+                                      .url;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              />
+                            </p.Stack>
+                            <p.Stack
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__igWvm
+                              )}
+                            >
+                              <AntdButton
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.button__fIma3
+                                )}
+                                onClick={async () => {
+                                  const $steps = {};
+                                  $steps["airtableDeleteOne"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          dataOp: __wrapUserFunction(
+                                            {
+                                              type: "InteractionArgLoc",
+                                              actionName: "dataSourceOp",
+                                              interactionUuid: "1zq6GFMl1K",
+                                              componentUuid: "DR_nCvMIJQo",
+                                              argName: "dataOp"
+                                            },
+                                            () => ({
+                                              sourceId:
+                                                "v25iWL5PSvNGtkiuqRVPPB",
+                                              opId: "fe50f188-3319-4a50-8717-44084db85dc2",
+                                              userArgs: {
+                                                id: [currentItem.__airtable_id]
+                                              },
+                                              cacheKey: null,
+                                              invalidatedKeys: [
+                                                "plasmic_refresh_all"
+                                              ],
+                                              roleId: null
+                                            })
+                                          )
+                                        };
+                                        return __wrapUserFunction(
+                                          {
+                                            type: "InteractionLoc",
+                                            actionName: "dataSourceOp",
+                                            interactionUuid: "1zq6GFMl1K",
+                                            componentUuid: "DR_nCvMIJQo"
+                                          },
+                                          () =>
+                                            (async ({
+                                              dataOp,
+                                              continueOnError
+                                            }) => {
+                                              try {
+                                                const response =
+                                                  await executePlasmicDataOp(
+                                                    dataOp,
+                                                    {
+                                                      userAuthToken:
+                                                        dataSourcesCtx?.userAuthToken,
+                                                      user: dataSourcesCtx?.user
+                                                    }
+                                                  );
+                                                if (
+                                                  dataOp.invalidatedKeys &&
+                                                  dataOp.invalidatedKeys.find(
+                                                    key =>
+                                                      key ===
+                                                      "plasmic_refresh_all"
+                                                  )
+                                                ) {
+                                                  await Promise.all(
+                                                    Array.from(
+                                                      cache.keys()
+                                                    ).map(async key =>
+                                                      mutate(key)
+                                                    )
+                                                  );
+
+                                                  return response;
+                                                }
+                                                if (dataOp.invalidatedKeys) {
+                                                  await Promise.all(
+                                                    dataOp.invalidatedKeys.map(
+                                                      async invalidateKey =>
+                                                        Promise.all(
+                                                          Array.from(
+                                                            cache.keys()
+                                                          ).map(async key => {
+                                                            if (
+                                                              typeof key ===
+                                                                "string" &&
+                                                              key.includes(
+                                                                `.$.${invalidateKey}.$.`
+                                                              )
+                                                            ) {
+                                                              return mutate(
+                                                                key
+                                                              );
+                                                            }
+                                                            return Promise.resolve();
+                                                          })
+                                                        )
+                                                    )
+                                                  );
+                                                }
+                                                return response;
+                                              } catch (e) {
+                                                if (!continueOnError) {
+                                                  throw e;
+                                                }
+                                                return e;
+                                              }
+                                            })?.apply(null, [actionArgs]),
+                                          actionArgs
+                                        );
+                                      })()
+                                    : undefined;
+                                  if (
+                                    typeof $steps["airtableDeleteOne"] ===
+                                      "object" &&
+                                    typeof $steps["airtableDeleteOne"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["airtableDeleteOne"] =
+                                      await __wrapUserPromise(
+                                        {
+                                          type: "InteractionLoc",
+                                          actionName: "dataSourceOp",
+                                          interactionUuid: "1zq6GFMl1K",
+                                          componentUuid: "DR_nCvMIJQo"
+                                        },
+                                        $steps["airtableDeleteOne"]
+                                      );
+                                  }
+                                }}
+                                type={"default" as const}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__yDhOg
+                                  )}
+                                >
+                                  {"Delete"}
+                                </div>
+                              </AntdButton>
+                            </p.Stack>
+                          </p.Stack>
+                        </DishCard>
+                      ))}
+                    </div>
+                  </section>
+                </React.Fragment>
               )}
             </ph.DataCtxReader>
           </PageLayout>
@@ -328,33 +819,36 @@ const PlasmicDescendants = {
   root: [
     "root",
     "pageLayout",
+    "form",
     "section",
-    "freeBox",
     "dishCard",
     "dishName",
+    "dishImage",
     "ingredients",
     "cost"
   ],
   pageLayout: [
     "pageLayout",
+    "form",
     "section",
-    "freeBox",
     "dishCard",
     "dishName",
+    "dishImage",
     "ingredients",
     "cost"
   ],
+  form: ["form"],
   section: [
     "section",
-    "freeBox",
     "dishCard",
     "dishName",
+    "dishImage",
     "ingredients",
     "cost"
   ],
-  freeBox: ["freeBox", "dishCard", "dishName", "ingredients", "cost"],
-  dishCard: ["dishCard", "dishName", "ingredients", "cost"],
+  dishCard: ["dishCard", "dishName", "dishImage", "ingredients", "cost"],
   dishName: ["dishName"],
+  dishImage: ["dishImage"],
   ingredients: ["ingredients"],
   cost: ["cost"]
 } as const;
@@ -364,10 +858,11 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   pageLayout: typeof PageLayout;
+  form: typeof FormWrapper;
   section: "section";
-  freeBox: "div";
   dishCard: typeof DishCard;
   dishName: "div";
+  dishImage: typeof p.PlasmicImg;
   ingredients: "div";
   cost: "div";
 };
@@ -433,10 +928,11 @@ export const PlasmicHomepage = Object.assign(
   {
     // Helper components rendering sub-elements
     pageLayout: makeNodeComponent("pageLayout"),
+    form: makeNodeComponent("form"),
     section: makeNodeComponent("section"),
-    freeBox: makeNodeComponent("freeBox"),
     dishCard: makeNodeComponent("dishCard"),
     dishName: makeNodeComponent("dishName"),
+    dishImage: makeNodeComponent("dishImage"),
     ingredients: makeNodeComponent("ingredients"),
     cost: makeNodeComponent("cost"),
 
