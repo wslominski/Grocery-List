@@ -343,6 +343,32 @@
           "cssFilePath": "plasmic/app_starter/PlasmicDishCard.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "lG71tFQEVK",
+          "name": "MyTextInput",
+          "type": "managed",
+          "projectId": "5NqxLwkJf8dtHXPoVMH2rF",
+          "renderModuleFilePath": "plasmic/app_starter/PlasmicMyTextInput.tsx",
+          "importSpec": {
+            "modulePath": "MyTextInput.tsx"
+          },
+          "cssFilePath": "plasmic/app_starter/PlasmicMyTextInput.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "3KRlq4x-V2",
+          "name": "DishSubmitComponent",
+          "type": "managed",
+          "projectId": "5NqxLwkJf8dtHXPoVMH2rF",
+          "renderModuleFilePath": "plasmic/app_starter/PlasmicDishSubmitComponent.tsx",
+          "importSpec": {
+            "modulePath": "DishSubmitComponent.tsx"
+          },
+          "cssFilePath": "plasmic/app_starter/PlasmicDishSubmitComponent.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -374,16 +400,28 @@
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
         },
         {
-          "id": "HX_YorwGKO",
-          "name": "CompHxYorwGko",
-          "displayName": "GroceryForm",
+          "id": "elMU2Q4vpj",
+          "name": "CompelMu2Q4Vpj",
+          "displayName": "HelloWorld",
           "componentImportPath": ""
         },
         {
-          "id": "BjYKlyPp5y",
-          "name": "CompBjYKlyPp5Y",
-          "displayName": "HelloWorld",
-          "componentImportPath": ""
+          "id": "pfZY6fIt5G",
+          "name": "DishForm",
+          "displayName": "DishForm",
+          "componentImportPath": "./components/DishForm.tsx"
+        },
+        {
+          "id": "zGiPZSMNaw",
+          "name": "RegisterDishForm",
+          "displayName": "RegisterDishForm",
+          "componentImportPath": "./components/RegisterDishForm.tsx"
+        },
+        {
+          "id": "Xc2bzMWQUk",
+          "name": "MyTextInput",
+          "displayName": "MyTextInput",
+          "componentImportPath": "./components/MyTextInput.tsx"
         }
       ]
     },
@@ -411,7 +449,8 @@
           "displayName": "global-parallax-provider",
           "componentImportPath": "@plasmicpkgs/react-scroll-parallax"
         }
-      ]
+      ],
+      "jsBundleThemes": []
     }
   ],
   "globalVariants": {
